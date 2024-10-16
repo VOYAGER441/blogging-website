@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import AppNav from "./component/AppNav";
+import TopBlog from "./content/TopBlog";
+
 
 export default function Home() {
   return (
-    <>
-    
-    </>
+    <div className="container-fluid">
+    <TopBlog/>
+    </div>
   );
 }

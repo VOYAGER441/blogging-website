@@ -1,11 +1,158 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
+import styles from "./AppFooter.module.scss";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaGoogle,
+  FaInstagram,
+  FaLinkedin,
+  FaGithub,
+  FaHome,
+  FaEnvelope,
+  FaPhone,
+  FaPrint,
+} from "react-icons/fa";
+import Image from "next/image";
 
 const AppFooter = () => {
   return (
-    <>
-      <div>AppFooter</div>
-      <svg id="wave" style={{transform:"rotate(0deg)", transition: "0.3s"}} viewBox="0 0 1440 310" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(243, 106, 62, 1)" offset="0%"></stop><stop stop-color="rgba(255, 179, 11, 1)" offset="100%"></stop></linearGradient></defs><path style={{transform:"translate(0, 0px)", opacity:"1"}} fill="url(#sw-gradient-0)" d="M0,93L48,124C96,155,192,217,288,217C384,217,480,155,576,149.8C672,145,768,196,864,191.2C960,186,1056,124,1152,108.5C1248,93,1344,124,1440,144.7C1536,165,1632,176,1728,149.8C1824,124,1920,62,2016,41.3C2112,21,2208,41,2304,41.3C2400,41,2496,21,2592,51.7C2688,83,2784,165,2880,165.3C2976,165,3072,83,3168,72.3C3264,62,3360,124,3456,139.5C3552,155,3648,124,3744,108.5C3840,93,3936,93,4032,82.7C4128,72,4224,52,4320,62C4416,72,4512,114,4608,134.3C4704,155,4800,155,4896,134.3C4992,114,5088,72,5184,87.8C5280,103,5376,176,5472,196.3C5568,217,5664,186,5760,155C5856,124,5952,93,6048,72.3C6144,52,6240,41,6336,51.7C6432,62,6528,93,6624,124C6720,155,6816,186,6864,201.5L6912,217L6912,310L6864,310C6816,310,6720,310,6624,310C6528,310,6432,310,6336,310C6240,310,6144,310,6048,310C5952,310,5856,310,5760,310C5664,310,5568,310,5472,310C5376,310,5280,310,5184,310C5088,310,4992,310,4896,310C4800,310,4704,310,4608,310C4512,310,4416,310,4320,310C4224,310,4128,310,4032,310C3936,310,3840,310,3744,310C3648,310,3552,310,3456,310C3360,310,3264,310,3168,310C3072,310,2976,310,2880,310C2784,310,2688,310,2592,310C2496,310,2400,310,2304,310C2208,310,2112,310,2016,310C1920,310,1824,310,1728,310C1632,310,1536,310,1440,310C1344,310,1248,310,1152,310C1056,310,960,310,864,310C768,310,672,310,576,310C480,310,384,310,288,310C192,310,96,310,48,310L0,310Z"></path><defs><linearGradient id="sw-gradient-1" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(243, 106, 62, 1)" offset="0%"></stop><stop stop-color="rgba(255, 179, 11, 1)" offset="100%"></stop></linearGradient></defs><path style={{transform:"translate(0, 50px)", opacity:"0.9"}} fill="url(#sw-gradient-1)" d="M0,31L48,51.7C96,72,192,114,288,108.5C384,103,480,52,576,72.3C672,93,768,186,864,206.7C960,227,1056,176,1152,129.2C1248,83,1344,41,1440,46.5C1536,52,1632,103,1728,113.7C1824,124,1920,93,2016,67.2C2112,41,2208,21,2304,56.8C2400,93,2496,186,2592,186C2688,186,2784,93,2880,46.5C2976,0,3072,0,3168,5.2C3264,10,3360,21,3456,36.2C3552,52,3648,72,3744,98.2C3840,124,3936,155,4032,149.8C4128,145,4224,103,4320,108.5C4416,114,4512,165,4608,170.5C4704,176,4800,134,4896,144.7C4992,155,5088,217,5184,222.2C5280,227,5376,176,5472,134.3C5568,93,5664,62,5760,87.8C5856,114,5952,196,6048,222.2C6144,248,6240,217,6336,180.8C6432,145,6528,103,6624,118.8C6720,134,6816,207,6864,242.8L6912,279L6912,310L6864,310C6816,310,6720,310,6624,310C6528,310,6432,310,6336,310C6240,310,6144,310,6048,310C5952,310,5856,310,5760,310C5664,310,5568,310,5472,310C5376,310,5280,310,5184,310C5088,310,4992,310,4896,310C4800,310,4704,310,4608,310C4512,310,4416,310,4320,310C4224,310,4128,310,4032,310C3936,310,3840,310,3744,310C3648,310,3552,310,3456,310C3360,310,3264,310,3168,310C3072,310,2976,310,2880,310C2784,310,2688,310,2592,310C2496,310,2400,310,2304,310C2208,310,2112,310,2016,310C1920,310,1824,310,1728,310C1632,310,1536,310,1440,310C1344,310,1248,310,1152,310C1056,310,960,310,864,310C768,310,672,310,576,310C480,310,384,310,288,310C192,310,96,310,48,310L0,310Z"></path></svg>
-    </>
+    <div className={`${styles.footerDiv}`}>
+      <footer
+        className={`text-center text-lg-start text-black mt-5`}
+        style={{ backgroundColor: "transparent", position: "absolute",marginBottom:"-70px" }}
+      >
+        <section
+          className="d-flex justify-content-between p-4"
+          style={{ backgroundColor: "#transparent" }}
+        >
+          <div className="me-5">
+            <span>Get connected with us on social networks:</span>
+          </div>
+
+          <div>
+            <a href="#" className="text-black me-4">
+              <FaFacebookF />
+            </a>
+            <a href="#" className="text-black me-4">
+              <FaTwitter />
+            </a>
+            <a href="#" className="text-black me-4">
+              <FaGoogle />
+            </a>
+            <a href="#" className="text-black me-4">
+              <FaInstagram />
+            </a>
+            <a href="#" className="text-black me-4">
+              <FaLinkedin />
+            </a>
+            <a href="#" className="text-black me-4">
+              <FaGithub />
+            </a>
+          </div>
+        </section>
+
+        <section className="">
+          <div className="container text-center text-md-start mt-5">
+            <div className="row mt-3">
+              <div className="col-md-3 col-lg-4 col-xl-3 mx-auto">
+                <Image
+                  src={"/assets/logo.png"}
+                  alt="logo"
+                  width={50}
+                  height={50}
+                  style={{ borderRadius: "50%" }}
+                />
+                <h6 className="text-uppercase fw-bold">Bit By Bit</h6>
+                <hr
+                  className="mb-4 mt-0 d-inline-block mx-auto"
+                  style={{
+                    width: "60px",
+                    backgroundColor: "#7c4dff",
+                    height: "2px",
+                  }}
+                />
+                <p>
+                  Empower students by sharing bite-sized, insightful computer
+                  science content on `Bit By Bit,` fostering a community of
+                  learning and collaboration.
+                </p>
+              </div>
+
+              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <h6 className="text-uppercase fw-bold">Useful links</h6>
+                <hr
+                  className="mb-4 mt-0 d-inline-block mx-auto"
+                  style={{
+                    width: "60px",
+                    backgroundColor: "#7c4dff",
+                    height: "2px",
+                  }}
+                />
+                <p>
+                  <a href="#!" className="text-black">
+                    Your Account
+                  </a>
+                </p>
+                <p>
+                  <a href="#!" className="text-black">
+                    Become an Affiliate
+                  </a>
+                </p>
+                <p>
+                  <a href="#!" className="text-black">
+                    Shipping Rates
+                  </a>
+                </p>
+                <p>
+                  <a href="#!" className="text-black">
+                    Help
+                  </a>
+                </p>
+              </div>
+
+              <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <h6 className="text-uppercase fw-bold">Contact</h6>
+                <hr
+                  className="mb-4 mt-0 d-inline-block mx-auto"
+                  style={{
+                    width: "60px",
+                    backgroundColor: "#7c4dff",
+                    height: "2px",
+                  }}
+                />
+                <p>
+                  <FaHome className="me-2" /> New York, NY 10012, US
+                </p>
+                <p>
+                  <FaEnvelope className="me-2" /> info@example.com
+                </p>
+                <p>
+                  <FaPhone className="me-2" /> + 01 234 567 88
+                </p>
+                <p>
+                  <FaPrint className="me-2" /> + 01 234 567 89
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div
+          className="text-center p-3"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+        >
+          © 2024 Copyright:Mainak Banduri Made with ❤️
+        </div>
+      </footer>
+
+     
+
+      <div style={{ zIndex: "-1"}}>
+        <img src="/assets/wave.png" style={{ width: "120%", height:"100%",marginLeft:"-80px",}} />
+      </div>
+    </div>
   );
 };
 

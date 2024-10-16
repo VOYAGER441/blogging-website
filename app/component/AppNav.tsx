@@ -1,19 +1,29 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
+import { FaSearch } from "react-icons/fa";
+import Image from "next/image";
+import styles from './AppNav.module.scss'
+
 
 const AppNav = () => {
   return (
-    <>
+    <div>
       <svg
         id="wave"
-        style={{ transform: "rotate(180deg)", transition: " 0.3s" }}
+        style={{
+          transform: "rotate(180deg)",
+          transition: " 0.3s",
+          position: "absolute",
+          zIndex: "-99",
+        }}
         viewBox="0 0 1440 330"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
           <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
-            <stop stop-color="rgba(243, 106, 62, 1)" offset="0%"></stop>
-            <stop stop-color="rgba(255, 179, 11, 1)" offset="100%"></stop>
+            <stop stopColor="rgba(243, 106, 62, 1)" offset="0%"></stop>
+            <stop stopColor="rgba(255, 179, 11, 1)" offset="100%"></stop>
           </linearGradient>
         </defs>
         <path
@@ -23,8 +33,8 @@ const AppNav = () => {
         ></path>
         <defs>
           <linearGradient id="sw-gradient-1" x1="0" x2="0" y1="1" y2="0">
-            <stop stop-color="rgba(243, 106, 62, 1)" offset="0%"></stop>
-            <stop stop-color="rgba(255, 179, 11, 1)" offset="100%"></stop>
+            <stop stopColor="rgba(243, 106, 62, 1)" offset="0%"></stop>
+            <stop stopColor="rgba(255, 179, 11, 1)" offset="100%"></stop>
           </linearGradient>
         </defs>
         <path
@@ -34,8 +44,8 @@ const AppNav = () => {
         ></path>
         <defs>
           <linearGradient id="sw-gradient-2" x1="0" x2="0" y1="1" y2="0">
-            <stop stop-color="rgba(243, 106, 62, 1)" offset="0%"></stop>
-            <stop stop-color="rgba(255, 179, 11, 1)" offset="100%"></stop>
+            <stop stopColor="rgba(243, 106, 62, 1)" offset="0%"></stop>
+            <stop stopColor="rgba(255, 179, 11, 1)" offset="100%"></stop>
           </linearGradient>
         </defs>
         <path
@@ -44,8 +54,86 @@ const AppNav = () => {
           d="M0,66L40,71.5C80,77,160,88,240,93.5C320,99,400,99,480,115.5C560,132,640,165,720,170.5C800,176,880,154,960,165C1040,176,1120,220,1200,214.5C1280,209,1360,154,1440,154C1520,154,1600,209,1680,231C1760,253,1840,242,1920,225.5C2000,209,2080,187,2160,170.5C2240,154,2320,143,2400,148.5C2480,154,2560,176,2640,192.5C2720,209,2800,220,2880,220C2960,220,3040,209,3120,214.5C3200,220,3280,242,3360,225.5C3440,209,3520,154,3600,110C3680,66,3760,33,3840,38.5C3920,44,4000,88,4080,104.5C4160,121,4240,110,4320,88C4400,66,4480,33,4560,66C4640,99,4720,198,4800,220C4880,242,4960,187,5040,165C5120,143,5200,154,5280,159.5C5360,165,5440,165,5520,187C5600,209,5680,253,5720,275L5760,297L5760,330L5720,330C5680,330,5600,330,5520,330C5440,330,5360,330,5280,330C5200,330,5120,330,5040,330C4960,330,4880,330,4800,330C4720,330,4640,330,4560,330C4480,330,4400,330,4320,330C4240,330,4160,330,4080,330C4000,330,3920,330,3840,330C3760,330,3680,330,3600,330C3520,330,3440,330,3360,330C3280,330,3200,330,3120,330C3040,330,2960,330,2880,330C2800,330,2720,330,2640,330C2560,330,2480,330,2400,330C2320,330,2240,330,2160,330C2080,330,2000,330,1920,330C1840,330,1760,330,1680,330C1600,330,1520,330,1440,330C1360,330,1280,330,1200,330C1120,330,1040,330,960,330C880,330,800,330,720,330C640,330,560,330,480,330C400,330,320,330,240,330C160,330,80,330,40,330L0,330Z"
         ></path>
       </svg>
-      <div className="container-fluid"></div>
-    </>
+      <div
+        className=" navbar navbar-expand-lg "
+        style={{
+          backgroundColor: "transparent",
+          position: "relative",
+          zIndex: "99",
+        }}
+      >
+        {/* for logo */}
+        <div className="container-fluid ms-4">
+          <a className="navbar-brand" href="/">
+            
+            <Image src={"/assets/logo.png"} alt={"logo"} width={50} height={50} style={{borderRadius:"50%"}}/>
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          {/* for navbar */}
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-3">
+              <li className={`nav-item mx-2 ${styles.navOptions}`}>
+                <a className="nav-link active" aria-current="page" href="#">
+                  Home
+                </a>
+              </li>
+              <li className={`nav-item  ${styles.navOptions}`}>
+                <a className="nav-link active" aria-current="page" href="#">
+                  Topics
+                </a>
+              </li>
+              <li className={`nav-item mx-2 ${styles.navOptions}`}>
+                <a className="nav-link active" aria-current="page" href="#">
+                  Hot Topics
+                </a>
+              </li>
+              <li className={`nav-item mx-2 ${styles.navOptions}`}>
+                <a className="nav-link active" aria-current="page" href="#">
+                  Compiler
+                </a>
+              </li>
+              <li className={`nav-item mx-2 ${styles.navOptions}`}>
+                <a className="nav-link active" aria-current="page" href="#">
+                  Profile
+                </a>
+              </li>
+            </ul>
+            {/* for search box */}
+            <form className="d-flex me-5 " >
+              <div className="input-group">
+                <div className="form-floating" data-mdb-input-init>
+                  <input
+                    type="search"
+                    id="form1"
+                    className="form-control"
+                    placeholder="Search"
+                    style={{backgroundColor:"#e0e1dd"}}
+                  />
+                  <label htmlFor="form1">Search</label>
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-secondary bg-black"
+                  data-mdb-ripple-init
+                >
+                  <FaSearch />
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

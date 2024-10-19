@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Image from "next/image";
 import styles from "./page.module.scss";
-import AppNav from "./component/AppNav";
+import AppNav from "./GlobalComponent/AppNav";
 import TopBlog from "./content/TopBlog";
 
 

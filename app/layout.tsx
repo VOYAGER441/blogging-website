@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.scss";
-import AppNav from "./component/AppNav";
+import AppNav from "./GlobalComponent/AppNav";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AppFooter from "./component/AppFooter";
+import AppFooter from "./GlobalComponent/AppFooter";
+import Cursor from "./GlobalComponent/Cursor";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Bits By Bits",
+  title: "Bit By Bit",
   description: "A blogging website",
 };
 
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        
+        <Cursor/>
           <AppNav />
           {children}
           <AppFooter />

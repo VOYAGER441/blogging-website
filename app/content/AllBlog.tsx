@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import styles from "./AllBlog.module.scss";
+import Link from "next/link";
+import { FaRegEye } from "react-icons/fa";
 
 const AllBlog = () => {
   return (
@@ -123,7 +125,14 @@ const AllBlog = () => {
           </div>
         </div>
       </div>
-
+      {/* for more button */}
+      <div className={`mt-3`} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <Link href="/more-topics" style={{textDecoration:"none"}} passHref>
+            <button className={`btn btn-warning ${styles.seeMoreBtn}`}>
+              <FaRegEye className="mb-1" /> See More
+            </button>
+          </Link>
+        </div>
       
     </div>
   );

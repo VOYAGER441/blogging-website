@@ -142,7 +142,7 @@ const TopBlog = () => {
 
         </div>
         {/* More hot topic button */}
-        <div className={`mt-5`} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div className={`mt-4`} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <Link href="/more-topics" style={{textDecoration:"none"}} passHref>
             <button className={`btn btn-warning ${styles.seeMoreBtn}`}>
               <FaRegEye className="mb-1" /> See More

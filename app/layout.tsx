@@ -5,6 +5,7 @@ import AppNav from "./GlobalComponent/AppNav";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AppFooter from "./GlobalComponent/AppFooter";
 import Cursor from "./GlobalComponent/Cursor";
+import AppUpArrowKey from "./GlobalComponent/AppUpArrowKey";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Cursor/>
           <AppNav />
+          <AppUpArrowKey/>
           {children}
           <AppFooter />
         

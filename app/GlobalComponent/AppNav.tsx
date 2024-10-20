@@ -2,20 +2,15 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
-import styles from './AppNav.module.scss'
-
+import styles from "./AppNav.module.scss";
 
 const AppNav = () => {
   return (
     <div>
       <svg
+        className={`${styles.svg}`}
         id="wave"
-        style={{
-          transform: "rotate(180deg)",
-          transition: " 0.3s",
-          position: "absolute",
-          zIndex: "-99",
-        }}
+        style={{}}
         viewBox="0 0 1440 330"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -65,8 +60,13 @@ const AppNav = () => {
         {/* for logo */}
         <div className="container-fluid ms-4">
           <a className="navbar-brand" href="/">
-            
-            <Image src={"/assets/logo.png"} alt={"logo"} width={50} height={50} style={{borderRadius:"50%"}}/>
+            <Image
+              src={"/assets/logo.png"}
+              alt={"logo"}
+              width={50}
+              height={50}
+              style={{ borderRadius: "50%" }}
+            />
           </a>
           <button
             className="navbar-toggler"
@@ -87,7 +87,7 @@ const AppNav = () => {
                   Home
                 </a>
               </li>
-              <li className={`nav-item  ${styles.navOptions}`}>
+              <li className={`nav-item mx-2 ${styles.navOptions}`}>
                 <a className="nav-link active" aria-current="page" href="#">
                   Topics
                 </a>
@@ -109,27 +109,29 @@ const AppNav = () => {
               </li>
             </ul>
             {/* for search box */}
-            <form className="d-flex me-5 " >
-              <div className="input-group">
-                <div className="form-floating" data-mdb-input-init>
-                  <input
-                    type="search"
-                    id="form1"
-                    className="form-control"
-                    placeholder="Search"
-                    style={{backgroundColor:"#e0e1dd"}}
-                  />
-                  <label htmlFor="form1">Search</label>
+            <div className={`${styles.searchContainer}`}>
+              <form className="d-flex me-5 ">
+                <div className="input-group">
+                  <div className="form-floating" data-mdb-input-init>
+                    <input
+                      type="search"
+                      id="form1"
+                      className="form-control"
+                      placeholder="Search"
+                      style={{ backgroundColor: "#e0e1dd" }}
+                    />
+                    <label htmlFor="form1">Search</label>
+                  </div>
+                  <button
+                    type="button"
+                    className="btn btn-secondary bg-black"
+                    data-mdb-ripple-init
+                  >
+                    <FaSearch />
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  className="btn btn-secondary bg-black"
-                  data-mdb-ripple-init
-                >
-                  <FaSearch />
-                </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>

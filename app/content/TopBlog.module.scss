@@ -54,6 +54,7 @@
           opacity: 0.3;
         }
       }
+    
 
       .cardImg {
         position: relative;
@@ -62,6 +63,12 @@
     }
   }
 }
+.btn{
+  @media screen and (max-width:320px)  {
+    margin-right: 30px;
+  }
+}
+
 .seeMoreBtn{
   transition: all .3s ease;
   box-shadow: -4px 9px 86px -12px rgba(0, 0, 0, 0.63);

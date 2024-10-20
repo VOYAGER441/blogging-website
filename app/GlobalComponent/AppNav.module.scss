@@ -3,10 +3,32 @@
     font-weight: 400;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    @media screen and (max-width:769px) {
+        font-size: 1.02rem;
+        font-weight: 600;
+    }
 
     &:hover {
         font-weight: 600;
         transform: scale(1.2);
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+}
+.svg{
+    transform: rotate(180deg);
+    transition:  0.3s;
+    position: absolute;
+    z-index: -99;
+    // width: 100%;
+    // overflow: hidden;
+    // @media screen and (max-width:769px) {
+    //     width: 300%;
+    //     overflow-x: hidden;
+    // }
+}
+.searchContainer{
+    @media screen and (max-width:769px) {
+        margin-left: 20px;
+        width: 105%;
     }
 }

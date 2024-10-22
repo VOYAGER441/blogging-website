@@ -1,9 +1,49 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 
 import React from "react";
 import Link from "next/link"; // Import Link from Next.js
 import styles from "./TopBlog.module.scss";
 import { FaRegEye } from "react-icons/fa";
+
+const cardData = [
+  {
+    id: 1,
+    title: "John Doe",
+    text: "Some example text.",
+    buttonLabel: "FREE",
+    imageSrc: "/assets/img2.png",
+    slug: "path-to-blog",
+    popUpText: "Additional information on hover",
+  },
+  {
+    id: 2,
+    title: "Jane Smith",
+    text: "Another example text.",
+    buttonLabel: "SUBSCRIBE",
+    imageSrc: "/assets/img3.png",
+    slug: "path-to-another-blog",
+    popUpText: "More details available here",
+  },
+  {
+    id: 3,
+    title: "Alice Brown",
+    text: "Learn something new today.",
+    buttonLabel: "JOIN",
+    imageSrc: "/assets/img3.png",
+    slug: "path-to-learn",
+    popUpText: "Exclusive content for members",
+  },
+  {
+    id: 4,
+    title: "Bob Johnson",
+    text: "Insights and stories.",
+    buttonLabel: "EXPLORE",
+    imageSrc: "/assets/img2.png",
+    slug: "path-to-insights",
+    popUpText: "Click to know more",
+  },
+];
 
 const TopBlog = () => {
   return (
@@ -31,119 +71,56 @@ const TopBlog = () => {
       <div>
         <div className={`container-fluid d-flex ${styles.MainCardDiv}`}>
           {/* Blog Card */}
-          <div className={`${styles.outerDiv}`}>
-            <Link href="/path-to-blog" passHref style={{textDecoration:"none"}}>
-              <div className={`card ${styles.cards}`} style={{ cursor: "pointer" }}>
-                <img
-                  className={`card-img-top ${styles.cardImgTop}`}
-                  src="/assets/img2.png"
-                  alt="Card image"
-                />
-                <div className={`card-body ${styles.cardBody}`}>
-                  <h4 className={`card-title ${styles.cardTitle}`}>John Doe</h4>
-                  <p className={`card-text ${styles.cardText}`}>
-                    Some example text.
-                  </p>
-                  <button
-                    className={`btn btn-primary ${styles.btn}`}
-                    style={{ float: "right" }}
+          {/* Blog Card */}
+
+          {cardData.map((card, key) => (
+            <div key={key} className={`${styles.outerDiv}`}>
+              <div className={`${styles.innerDiv}`}>
+                <Link
+                  href={`/Blogs/${card.slug}`}
+                  passHref
+                  style={{ textDecoration: "none" }}
+                >
+                  <div
+                    className={`card ${styles.cards}`}
+                    style={{ cursor: "pointer" }}
                   >
-                    FREE
-                  </button>
-                </div>
-                <p className={`${styles.popUpText}`}>
-                  Additional information on hover
-                </p>
+                    <img
+                      className={`card-img-top ${styles.cardImgTop}`}
+                      src={card.imageSrc}
+                      alt="Card image"
+                    />
+                    <div className={`card-body ${styles.cardBody}`}>
+                      <h4 className={`card-title ${styles.cardTitle}`}>
+                        {card.title}
+                      </h4>
+                      <p className={`card-text ${styles.cardText}`}>
+                        {card.text}
+                      </p>
+                      <button
+                        className={`btn btn-primary ${styles.btn}`}
+                        style={{ float: "right" }}
+                      >
+                        {card.buttonLabel}
+                      </button>
+                    </div>
+                    <p className={`${styles.popUpText}`}>{card.popUpText}</p>
+                  </div>
+                </Link>
               </div>
-            </Link>
-          </div>
-
-          <div className={`${styles.outerDiv}`}>
-            <Link href="/path-to-blog" passHref style={{textDecoration:"none"}}>
-              <div className={`card ${styles.cards}`} style={{ cursor: "pointer" }}>
-                <img
-                  className={`card-img-top ${styles.cardImgTop}`}
-                  src="/assets/img2.png"
-                  alt="Card image"
-                />
-                <div className={`card-body ${styles.cardBody}`}>
-                  <h4 className={`card-title ${styles.cardTitle}`}>John Doe</h4>
-                  <p className={`card-text ${styles.cardText}`}>
-                    Some example text.
-                  </p>
-                  <button
-                    className={`btn btn-primary ${styles.btn}`}
-                    style={{ float: "right" }}
-                  >
-                    FREE
-                  </button>
-                </div>
-                <p className={`${styles.popUpText}`}>
-                  Additional information on hover
-                </p>
-              </div>
-            </Link>
-          </div>
-
-          <div className={`${styles.outerDiv}`}>
-            <Link href="/path-to-blog" passHref style={{textDecoration:"none"}}>
-              <div className={`card ${styles.cards}`} style={{ cursor: "pointer" }}>
-                <img
-                  className={`card-img-top ${styles.cardImgTop}`}
-                  src="/assets/img2.png"
-                  alt="Card image"
-                />
-                <div className={`card-body ${styles.cardBody}`}>
-                  <h4 className={`card-title ${styles.cardTitle}`}>John Doe</h4>
-                  <p className={`card-text ${styles.cardText}`}>
-                    Some example text.
-                  </p>
-                  <button
-                    className={`btn btn-primary ${styles.btn}`}
-                    style={{ float: "right" }}
-                  >
-                    FREE
-                  </button>
-                </div>
-                <p className={`${styles.popUpText}`}>
-                  Additional information on hover
-                </p>
-              </div>
-            </Link>
-          </div>
-
-          <div className={`${styles.outerDiv}`}>
-            <Link href="/path-to-blog" passHref style={{textDecoration:"none"}}>
-              <div className={`card ${styles.cards}`} style={{ cursor: "pointer" }}>
-                <img
-                  className={`card-img-top ${styles.cardImgTop}`}
-                  src="/assets/img2.png"
-                  alt="Card image"
-                />
-                <div className={`card-body ${styles.cardBody}`}>
-                  <h4 className={`card-title ${styles.cardTitle}`}>John Doe</h4>
-                  <p className={`card-text ${styles.cardText}`}>
-                    Some example text.
-                  </p>
-                  <button
-                    className={`btn btn-primary ${styles.btn}`}
-                    style={{ float: "right" }}
-                  >
-                    FREE
-                  </button>
-                </div>
-                <p className={`${styles.popUpText}`}>
-                  Additional information on hover
-                </p>
-              </div>
-            </Link>
-          </div>
-
-
+            </div>
+          ))}
         </div>
         {/* More hot topic button */}
-        <div className={`mt-4`} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <Link href="/more-topics" style={{textDecoration:"none"}} passHref>
+        <div
+          className={`mt-4`}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Link href={`/Blog/`} style={{ textDecoration: "none" }} passHref>
             <button className={`btn btn-warning ${styles.seeMoreBtn}`}>
               <FaRegEye className="mb-1" /> See More
             </button>

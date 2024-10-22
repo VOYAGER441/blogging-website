@@ -22,56 +22,72 @@
       box-shadow: 9px 9px 162px -5px rgba(0, 0, 0, 0.63);
     }
 
-    .cards {
-      width: 300px;
-      position: relative;
-      transition: opacity 0.3s ease-in-out;
-      .popUpText {
-        position: absolute;
-        top: -100%;
-        left: 0;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-        transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        opacity: 0;
-        z-index: 1;
-      }
+    .innerDiv {
+      display: grid;
 
-      .cardBody, .cardImgTop, .cardTitle, .cardText, .btn {
-        transition: opacity 0.3s ease-in-out;
-      }
 
-      &:hover {
-        .popUpText {
-          top: 0;
-          opacity: 1;
-        }
-
-        .cardBody, .cardImgTop, .cardTitle, .cardText, .btn {
-          opacity: 0.3;
-        }
-      }
-    
-
-      .cardImg {
+      .cards {
+        width: 300px;
         position: relative;
-        z-index: 0;
+        transition: opacity 0.3s ease-in-out;
+
+        .popUpText {
+          position: absolute;
+          top: -100%;
+          left: 0;
+          width: 100%;
+          background-color: rgba(0, 0, 0, 0.7);
+          color: #fff;
+          padding: 10px;
+          text-align: center;
+          transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out;
+          opacity: 0;
+          z-index: 1;
+        }
+
+        .cardBody,
+        .cardImgTop,
+        .cardTitle,
+        .cardText,
+        .btn {
+          transition: opacity 0.3s ease-in-out;
+        }
+
+        &:hover {
+          .popUpText {
+            top: 0;
+            opacity: 1;
+          }
+
+          .cardBody,
+          .cardImgTop,
+          .cardTitle,
+          .cardText,
+          .btn {
+            opacity: 0.3;
+          }
+        }
+
+
+        .cardImg {
+          position: relative;
+          z-index: 0;
+        }
       }
     }
   }
 }
-.btn{
-  @media screen and (max-width:320px)  {
+
+.btn {
+  @media screen and (max-width:320px) {
     margin-right: 30px;
   }
 }
 
-.seeMoreBtn{
+.seeMoreBtn {
   transition: all .3s ease;
   box-shadow: -4px 9px 86px -12px rgba(0, 0, 0, 0.63);
+
   &:hover {
     transform: scale(1.2);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);

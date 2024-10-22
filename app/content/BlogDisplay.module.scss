@@ -1,0 +1,8 @@
+/* Your CSS file */
+.img {
+    transition: transform 0.3s ease-out; /* Add transition to the transform property */
+}
+
+.img:hover {
+    transform: scale(1.2); /* Scale the image on hover */
+}

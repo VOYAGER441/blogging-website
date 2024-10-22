@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import styles from './BlogDisplay.module.scss'
+// import styles from './BlogDisplay.module.scss'
 
 const BlogDisplay = ({ slug }: { slug: string }) => {
   return (
@@ -25,7 +25,7 @@ const BlogDisplay = ({ slug }: { slug: string }) => {
                 }}
               />
               <div className="card-img-overlay d-flex flex-column justify-content-end">
-                <h5 className="card-title">Card title</h5>
+                <h5 className="card-title">{slug}</h5>
                 <p className="card-text">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 </p>

@@ -103,8 +103,8 @@ const AppNav = () => {
                 </a>
               </li>
               <li className={`nav-item mx-2 ${styles.navOptions}`}>
-                <a className="nav-link active" aria-current="page" href="#">
-                  Profile
+                <a className="nav-link active" aria-current="page" href="/Auth">
+                  Create(Only for Admin)
                 </a>
               </li>
             </ul>

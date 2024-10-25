@@ -1,51 +1,78 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
-import styles from "./page.module.scss"
-import CreateBlog from '../componemt/CreateBlog'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 
-const page = () => {
+import React, { useState } from 'react';
+// import { loginRequest } from "../service/Blog.service";
+import { useRouter } from 'next/navigation';
+import styles from './page.module.scss';
+import service from '../service';
+
+const Page = () => {
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const router = useRouter();
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErrorMessage(null); // Clear any previous error messages
+  
+    if (userName && password) {
+      service.loginRequest(userName, password).subscribe({
+        next: (result: any) => {
+          console.log('API Response:', result);
+          if (result === true) {
+            console.log('Login successful:', result);
+            router.push('/Post');
+          } else {
+            setErrorMessage('Invalid login credentials.');
+          }
+        },
+        error: (error: any) => {
+          console.error('An error occurred:', error);
+          setErrorMessage('An error occurred. Please try again.');
+        },
+      });
+    } else {
+      setErrorMessage('Please fill in both fields.');
+    }
+  };
+  
   return (
-    <div>
-        
-    <div className={`${styles.wrapper} container `}>
+    <div className={`container ${styles.wrapper}`}>
       <div className={styles.logo}>
-        <img
-          src="/assets/logo2.png"
-          alt="Twitter"
-        />
+        <img src="/assets/logo2.png" alt="Twitter" />
       </div>
       <div className={`text-center mt-4 ${styles.name}`}>Bit By Bits</div>
-      <form className={`p-3 mt-3 ${styles.form}`}>
+      <form className={`p-3 mt-3 ${styles.form}`} onSubmit={handleLogin}>
         <div className={`${styles.formField} d-flex align-items-center`}>
-          <span className="far fa-user"></span>
           <input
             type="text"
             name="userName"
-            id="userName"
             placeholder="Username"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           />
         </div>
         <div className={`${styles.formField} d-flex align-items-center`}>
-          <span className="fas fa-key"></span>
           <input
             type="password"
             name="password"
-            id="pwd"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className={`btn mt-3 ${styles.btn}`}>Login</button>
+        <button type="submit" className={`btn mt-3 ${styles.btn}`}>Login</button>
+        {errorMessage && (
+          <div className={`text-danger mt-3 ${styles.errorMessage}`}>
+            {errorMessage}
+          </div>
+        )}
       </form>
-      {/* <div className={`text-center fs-6 ${styles.links}`}>
-        <a href="#">Forget password?</a> or <a href="#">Sign up</a>
-      </div> */}
     </div>
+  );
+};
 
-<CreateBlog/>
-
-
-    </div>
-  )
-}
-
-export default page
+export default Page;

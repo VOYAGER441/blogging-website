@@ -85,7 +85,7 @@ const AppFooter = () => {
         </section>
 
         <div className={`${styles.copyright} text-center p-3`}>
-          © 2024 Mainak Bandrui | Made with ❤️
+          © 2024 Mainak Banduri | Made with ❤️
         </div>
 
         <div style={{ zIndex: "-1"}} className={` ${styles.waveBackground}`}>

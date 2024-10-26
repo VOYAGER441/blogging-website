@@ -1,168 +1,223 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// components/BlogForm.js
-'use client'
+// components/BlogForm.tsx
+'use client';
 import { useState } from 'react';
 import styles from './CreateBlog.module.scss';
+import { IBlogCreateRequest } from '../interface/Blog.interface'; // Adjust the path as needed
+import service from '../service';
 
 const CreateBlog = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    companyName: '',
-    address: '',
-    email: '',
-    phone: '',
-    additionalInfo: '',
-    createAccount: true,
+  const [formData, setFormData] = useState<IBlogCreateRequest>({
+    title: '',
+    content: {
+      heading: '',
+      subheading: '',
+      detailsContent: '',
+    },
+    tags: [''],
+    author: '',
+    isTop: false,
+    popUpText: '',
+    category: '',
+    thumbnail: '',
   });
 
-  const handleChange = (e: { target: { name: any; value: any; type: any; checked: any; }; }) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value,
-    });
-  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked; // Use type assertion
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch('/api/blogs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    // Handle nested content fields
+    if (name.startsWith('content.')) {
+      const field = name.split('.')[1];
+      setFormData((prev) => ({
+        ...prev,
+        content: {
+          ...prev.content,
+          [field]: value,
         },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        alert('Blog created successfully!');
-        setFormData({
-          firstName: '',
-          lastName: '',
-          companyName: '',
-          address: '',
-          email: '',
-          phone: '',
-          additionalInfo: '',
-          createAccount: true,
-        });
-      } else {
-        alert('Failed to create the blog');
-      }
-    } catch (error) {
-      console.error('Error creating blog:', error);
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: type === 'checkbox' ? checked : value,
+      }));
     }
   };
 
+  const handleTagChange = (index: number, value: string) => {
+    const newTags = [...formData.tags];
+    newTags[index] = value;
+    setFormData((prev) => ({
+      ...prev,
+      tags: newTags,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    service.createBlogRequest(formData).subscribe({
+      next: (data) => {
+        if (!data.error) {
+          alert('Blog created successfully!');
+          setFormData({
+            title: '',
+            content: {
+              heading: '',
+              subheading: '',
+              detailsContent: '',
+            },
+            tags: [''],
+            author: '',
+            isTop: false,
+            popUpText: '',
+            category: '',
+            thumbnail: '',
+          });
+        } else {
+          alert('Failed to create the blog: ' + data.message);
+        }
+      },
+      error: (err) => {
+        console.error('Subscription error:', err);
+        alert('An error occurred while creating the blog.');
+      }
+    });
+  };
+  
   return (
-    <form onSubmit={handleSubmit} className={`container-fluid ${styles.form}`}>
-      <div className="row mb-4">
-        <div className="col">
-          <div className={`form-outline ${styles.formOutline}`}>
-            <input
-              type="text"
-              id="form6Example1"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="First Name"
-            />
-          </div>
-        </div>
-        <div className="col">
-          <div className={`form-outline ${styles.formOutline}`}>
-            <input
-              type="text"
-              id="form6Example2"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="Last Name"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className={`form-outline mb-4 ${styles.formOutline}`}>
+    <form onSubmit={handleSubmit} className={`container-fluid mt-5 ${styles.form}`}>
+      <div className="form-outline mb-4" >
         <input
           type="text"
-          id="form6Example3"
-          name="companyName"
-          value={formData.companyName}
+          name="title"
+          style={{width:"100%"}}
+          value={formData.title}
           onChange={handleChange}
           className="form-control"
-          placeholder="Company Name"
+          placeholder="Blog Title"
         />
       </div>
 
-      <div className={`form-outline mb-4 ${styles.formOutline}`}>
+      <div className="form-outline mb-4">
         <input
           type="text"
-          id="form6Example4"
-          name="address"
-          value={formData.address}
+          name="content.heading"
+          style={{width:"100%"}}
+          value={formData.content.heading}
           onChange={handleChange}
           className="form-control"
-          placeholder="Address"
+          placeholder="Content Heading"
         />
       </div>
 
-      <div className={`form-outline mb-4 ${styles.formOutline}`}>
+      <div className="form-outline mb-4">
         <input
-          type="email"
-          id="form6Example5"
-          name="email"
-          value={formData.email}
+          type="text"
+          name="content.subheading"
+          style={{width:"100%"}}
+          value={formData.content.subheading}
           onChange={handleChange}
           className="form-control"
-          placeholder="Email"
+          placeholder="Content Subheading"
         />
       </div>
 
-      <div className={`form-outline mb-4 ${styles.formOutline}`}>
-        <input
-          type="number"
-          id="form6Example6"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          className="form-control"
-          placeholder="Phone"
-        />
-      </div>
-
-      <div className={`form-outline mb-4 ${styles.formOutline}`}>
+      <div className="form-outline mb-4">
         <textarea
+          name="content.detailsContent"
+          style={{width:"100%"}}
+          value={formData.content.detailsContent}
+          onChange={handleChange}
           className="form-control"
-          id="form6Example7"
-          name="additionalInfo"
-          value={formData.additionalInfo}
-          onChange={()=>handleChange}
-          
-          placeholder="Additional information"
+          placeholder="Details Content"
         ></textarea>
       </div>
 
-      <div className="form-check d-flex justify-content-center mb-4">
+      <div className="form-outline mb-4">
+        {formData.tags.map((tag, index) => (
+          <input
+            key={index}
+            type="text"
+            value={tag}
+            style={{width:"100%"}}
+            onChange={(e) => handleTagChange(index, e.target.value)}
+            className="form-control mb-2"
+            placeholder={`Tag ${index + 1}`}
+          />
+        ))}
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => setFormData((prev) => ({ ...prev, tags: [...prev.tags, ''] }))}
+        >
+          Add Tag
+        </button>
+      </div>
+
+      <div className="form-outline mb-4">
         <input
-          className="form-check-input me-2"
-          type="checkbox"
-          name="createAccount"
-          checked={formData.createAccount}
+          type="text"
+          name="author"
+          value={formData.author}
+          style={{width:"100%"}}
           onChange={handleChange}
-          id="form6Example8"
+          className="form-control"
+          placeholder="Author"
         />
-        <label className="form-check-label" htmlFor="form6Example8">
-          Create an account?
+      </div>
+
+      <div className="form-outline mb-4">
+        <input
+          type="text"
+          name="popUpText"
+          value={formData.popUpText}
+          onChange={handleChange}
+          style={{width:"100%"}}
+          className="form-control"
+          placeholder="Pop-up Text"
+        />
+      </div>
+
+      <div className="form-outline mb-4">
+        <input
+          type="text"
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          style={{width:"100%"}}
+          className="form-control"
+          placeholder="Category"
+        />
+      </div>
+
+      <div className="form-outline mb-4">
+        <input
+          type="text"
+          name="thumbnail"
+          value={formData.thumbnail}
+          onChange={handleChange}
+          style={{width:"100%"}}
+          className="form-control"
+          placeholder="Thumbnail URL"
+        />
+      </div>
+
+      <div className="form-check mb-4">
+        <input
+          type="checkbox"
+          name="isTop"
+          checked={formData.isTop}
+          onChange={handleChange}
+          style={{width:"100%"}}
+          className="form-check-input"
+        />
+        <label className="form-check-label" htmlFor="isTop">
+          Mark as Top Blog
         </label>
       </div>
 
-      <button type="submit" className={`btn btn-primary btn-block mb-4 ${styles.btn}`}>
-        Place order
+      <button type="submit" className={`btn btn-primary btn-block mb-4  ${styles.btn}`}>
+        Create Blog
       </button>
     </form>
   );

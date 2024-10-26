@@ -5,7 +5,7 @@ import { from, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 export const loginRequest = (userName: string | number | boolean, password: string | number | boolean) => {
-  const url = `http://localhost:5000/blog/check?userName=${encodeURIComponent(userName)}&password=${encodeURIComponent(password)}`;
+  const url = `https://bloging-backend-q74o.onrender.com/Blog/check?userName=${encodeURIComponent(userName)}&password=${encodeURIComponent(password)}`;
   
   console.log(url);
   

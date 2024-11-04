@@ -6,7 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { IBlogCreateRequest } from '../interface/Blog.interface';
 
 export const loginRequest = (userName: string | number | boolean, password: string | number | boolean) => {
-  const url = `https://bloging-backend-q74o.onrender.com/Blog/check?userName=${encodeURIComponent(userName)}&password=${encodeURIComponent(password)}`;
+  const url = `https://bloging-backend-production.up.railway.app/blog/check?userName=${encodeURIComponent(userName)}&password=${encodeURIComponent(password)}`;
   
   console.log(url);
   
@@ -27,7 +27,7 @@ export const loginRequest = (userName: string | number | boolean, password: stri
 // create
 
 export const createBlogRequest = (blogData: IBlogCreateRequest) => {
-  const url = 'https://bloging-backend-q74o.onrender.com/Blogs/create'; // Adjust URL as needed
+  const url = 'https://bloging-backend-production.up.railway.app/blog/create'; // Adjust URL as needed
 
   // Convert the axios promise into an observable using `from`
   return from(

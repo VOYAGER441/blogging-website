@@ -9,9 +9,9 @@ import AllBlog from "./content/AllBlog";
 export default function Home() {
   return (
     <div className="container-fluid">
-    <TopBlog/>
+    <TopBlog limit={4}/>
     <hr></hr>
-    <AllBlog/>
+    <AllBlog limit={5}/>
     </div>
   );
 }

@@ -1,51 +1,33 @@
+'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 
-import React from "react";
+import React, { SetStateAction, useEffect, useState } from "react";
 import Link from "next/link"; // Import Link from Next.js
 import styles from "./TopBlog.module.scss";
 import { FaRegEye } from "react-icons/fa";
+import service from "../service";
+import {  IBlogResponse } from "../interface/Blog.interface";
+import { Subscription } from "rxjs";
 
-const cardData = [
-  {
-    id: 1,
-    title: "John Doe",
-    text: "Some example text.",
-    buttonLabel: "FREE",
-    imageSrc: "/assets/img2.png",
-    slug: "path-to-blog",
-    popUpText: "Additional information on hover",
-  },
-  {
-    id: 2,
-    title: "Jane Smith",
-    text: "Another example text.",
-    buttonLabel: "SUBSCRIBE",
-    imageSrc: "/assets/img3.png",
-    slug: "path-to-another-blog",
-    popUpText: "More details available here",
-  },
-  {
-    id: 3,
-    title: "Alice Brown",
-    text: "Learn something new today.",
-    buttonLabel: "JOIN",
-    imageSrc: "/assets/img3.png",
-    slug: "path-to-learn",
-    popUpText: "Exclusive content for members",
-  },
-  {
-    id: 4,
-    title: "Bob Johnson",
-    text: "Insights and stories.",
-    buttonLabel: "EXPLORE",
-    imageSrc: "/assets/img2.png",
-    slug: "path-to-insights",
-    popUpText: "Click to know more",
-  },
-];
+const TopBlog = ({limit}:{limit:number}) => {
 
-const TopBlog = () => {
+  const[cardData,setCardData]=useState<IBlogResponse[]>([]);
+
+  const skip=0;
+  // const limit = 8; 
+  useEffect(()=>{
+    const subscription: Subscription = service.getTop({ skip, limit }).subscribe({
+      next: (response: SetStateAction<IBlogResponse[]>) => setCardData(response),
+      error: (err: any) => console.error('Error fetching blogs:', err),
+    });
+
+    return () => subscription.unsubscribe();
+  },[skip,limit])
+
+
+
   return (
     <div>
       {/* Heading container */}
@@ -87,7 +69,7 @@ const TopBlog = () => {
                   >
                     <img
                       className={`card-img-top ${styles.cardImgTop}`}
-                      src={card.imageSrc}
+                      src={card.thumbnail}
                       alt="Card image"
                     />
                     <div className={`card-body ${styles.cardBody}`}>
@@ -95,13 +77,13 @@ const TopBlog = () => {
                         {card.title}
                       </h4>
                       <p className={`card-text ${styles.cardText}`}>
-                        {card.text}
+                        {card.content.heading}
                       </p>
                       <button
                         className={`btn btn-primary ${styles.btn}`}
                         style={{ float: "right" }}
                       >
-                        {card.buttonLabel}
+                        {card.category}
                       </button>
                     </div>
                     <p className={`${styles.popUpText}`}>{card.popUpText}</p>
@@ -120,7 +102,7 @@ const TopBlog = () => {
             alignItems: "center",
           }}
         >
-          <Link href={`/Blog/`} style={{ textDecoration: "none" }} passHref>
+          <Link href={`/Top`} style={{ textDecoration: "none" }} passHref>
             <button className={`btn btn-warning ${styles.seeMoreBtn}`}>
               <FaRegEye className="mb-1" /> See More
             </button>

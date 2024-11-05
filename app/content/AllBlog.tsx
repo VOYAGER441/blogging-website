@@ -1,10 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
+'use client';
+import React, { SetStateAction, useEffect, useState } from "react";
 import styles from "./AllBlog.module.scss";
 import Link from "next/link";
 import { FaRegEye } from "react-icons/fa";
+import {  IBlogResponse } from "../interface/Blog.interface";
+import { Subscription } from "rxjs";
+import service from "../service";
+import formatDate from "../utils";
 
-const AllBlog = () => {
+const AllBlog = ({limit}:{limit:number}) => {
+
+  const[data,setData]=useState<IBlogResponse[]>([]);
+  // const [skip, setSkip] = useState(0);
+  const skip=0;
+  // const limit = 5; 
+  useEffect(()=>{
+    const subscription: Subscription = service.getAll({ skip, limit }).subscribe({
+      next: (response: SetStateAction<IBlogResponse[]>) => setData(response),
+      error: (err: any) => console.error('Error fetching blogs:', err),
+    });
+
+    return () => subscription.unsubscribe();
+  },[skip,limit])
+
   return (
     <div>
       {/* heading part*/}
@@ -27,107 +48,37 @@ const AllBlog = () => {
       </div>
 
       
-      <div className={styles.container}>
-        <div className={styles.previewCard}>
+        {data.map((item,key)=>(
+      <div key={key} className={styles.container}>
+
+          <div  className={styles.previewCard}>
           <div className={styles.previewCardWrp}>
             <div className={styles.previewCardImg}>
               <img
-                src="https://res.cloudinary.com/muhammederdem/image/upload/v1535759872/kuldar-kalvik-799168-unsplash.jpg"
+                src={`${item.createdAt}`}
                 alt="Autumn Leaves"
-              />
+                />
             </div>
             <div className={styles.previewCardContent}>
-              {/* <span className={styles.previewCardCode}>26 December 2019</span> */}
-              <h2 className={styles.previewCardTitle}>Lorem Ipsum Dolor</h2>
+              <span className={styles.previewCardCode}>{formatDate(item.updatedAt)}</span>
+              <h2 className={styles.previewCardTitle}>{item.title}</h2>
               <p className={styles.previewCardText}>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Recusandae voluptate repellendus magni illo ea animi?
+               {item.popUpText}
               </p>
-              <a href="#" className={styles.previewCardButton}>
+              <a href={`/Blogs/${item.slug}`} className={styles.previewCardButton}>
                 READ MORE
               </a>
             </div>
           </div>
         </div>
       </div>
+              ))}
 
       
-      <div className={styles.container}>
-        <div className={styles.previewCard}>
-          <div className={styles.previewCardWrp}>
-            <div className={styles.previewCardImg}>
-              <img
-                src="https://res.cloudinary.com/muhammederdem/image/upload/v1535759872/kuldar-kalvik-799168-unsplash.jpg"
-                alt="Autumn Leaves"
-              />
-            </div>
-            <div className={styles.previewCardContent}>
-              {/* <span className={styles.previewCardCode}>26 December 2019</span> */}
-              <h2 className={styles.previewCardTitle}>Lorem Ipsum Dolor</h2>
-              <p className={styles.previewCardText}>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Recusandae voluptate repellendus magni illo ea animi?
-              </p>
-              <a href="#" className={styles.previewCardButton}>
-                READ MORE
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       
-      <div className={styles.container}>
-        <div className={styles.previewCard}>
-          <div className={styles.previewCardWrp}>
-            <div className={styles.previewCardImg}>
-              <img
-                src="https://res.cloudinary.com/muhammederdem/image/upload/v1535759872/kuldar-kalvik-799168-unsplash.jpg"
-                alt="Autumn Leaves"
-              />
-            </div>
-            <div className={styles.previewCardContent}>
-              {/* <span className={styles.previewCardCode}>26 December 2019</span> */}
-              <h2 className={styles.previewCardTitle}>Lorem Ipsum Dolor</h2>
-              <p className={styles.previewCardText}>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Recusandae voluptate repellendus magni illo ea animi?
-              </p>
-              <a href="#" className={styles.previewCardButton}>
-                READ MORE
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      
-      <div className={styles.container}>
-        <div className={styles.previewCard}>
-          <div className={styles.previewCardWrp}>
-            <div className={styles.previewCardImg}>
-              <img
-                src="https://res.cloudinary.com/muhammederdem/image/upload/v1535759872/kuldar-kalvik-799168-unsplash.jpg"
-                alt="Autumn Leaves"
-              />
-            </div>
-            <div className={styles.previewCardContent}>
-              {/* <span className={styles.previewCardCode}>26 December 2019</span> */}
-              <h2 className={styles.previewCardTitle}>Lorem Ipsum Dolor</h2>
-              <p className={styles.previewCardText}>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Recusandae voluptate repellendus magni illo ea animi?
-              </p>
-              <a href="#" className={styles.previewCardButton}>
-                READ MORE
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
       {/* for more button */}
       <div className={`mt-3`} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <Link href="/more-topics" style={{textDecoration:"none"}} passHref>
+          <Link href="/AllTopics" style={{textDecoration:"none"}} passHref>
             <button className={`btn btn-warning ${styles.seeMoreBtn}`}>
               <FaRegEye className="mb-1" /> See More
             </button>
@@ -139,3 +90,5 @@ const AllBlog = () => {
 };
 
 export default AllBlog;
+
+

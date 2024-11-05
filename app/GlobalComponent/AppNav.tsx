@@ -61,7 +61,7 @@ const AppNav = () => {
         <div className="container-fluid ms-4">
           <a className="navbar-brand" href="/">
             <Image
-              src={"/assets/logo.png"}
+              src={"/assets/logo2.png"}
               alt={"logo"}
               width={50}
               height={50}
@@ -83,17 +83,17 @@ const AppNav = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-3">
               <li className={`nav-item mx-2 ${styles.navOptions}`}>
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/">
                   Home
                 </a>
               </li>
               <li className={`nav-item mx-2 ${styles.navOptions}`}>
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/AllTopics">
                   Topics
                 </a>
               </li>
               <li className={`nav-item mx-2 ${styles.navOptions}`}>
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/Top">
                   Hot Topics
                 </a>
               </li>

@@ -14,7 +14,7 @@ const page = ({params}:{params:any}) => {
       {/* <hr></hr> */}
       {/* <TopBlog/>
       <hr></hr> */}
-      <AllBlog/>
+      <AllBlog limit={30}/>
     </div>
   );
 };

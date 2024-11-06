@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.languageSelect {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    color: #495057;
+    outline: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+    &:focus {
+        border-color: #007bff;
+    }
+
+    &:hover {
+        background-color: #e9ecef;
+    }
+}
+
+.iframe {
+    border: none;
+    width: 80%;
+    height: 70vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+}

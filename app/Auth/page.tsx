@@ -42,7 +42,7 @@ const Page = () => {
   return (
     <div className={`container ${styles.wrapper}`}>
       <div className={styles.logo}>
-        <img src="/assets/logo2.png" alt="Twitter" />
+        <img src="/assets/logo2.png" alt="logo" />
       </div>
       <div className={`text-center mt-4 ${styles.name}`}>Bit By Bits</div>
       <form className={`p-3 mt-3 ${styles.form}`} onSubmit={handleLogin}>

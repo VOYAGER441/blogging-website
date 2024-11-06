@@ -15,7 +15,4 @@ export default function formatDate(input: string | number | Date) {
     return `${day} ${month} ${year}`;
   }
   
-  // Example usage:
-  const inputDate = "2024-10-28T07:09:06.051";
-  console.log(formatDate(inputDate));  // Output: "28 October 2024"
   

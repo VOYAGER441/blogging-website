@@ -98,7 +98,7 @@ const AppNav = () => {
                 </a>
               </li>
               <li className={`nav-item mx-2 ${styles.navOptions}`}>
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/Compiler">
                   Compiler
                 </a>
               </li>

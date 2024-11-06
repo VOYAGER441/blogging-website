@@ -6,11 +6,18 @@ import React from 'react'
 
 
 const page = ({params}:{params:any}) => {
-  console.log(params.slug);
+  // console.log('88888888888888888888');
+  
+  // console.log(params.slug);
+  // console.log('88888888888888888888');
+
+  const decodedSlug = decodeURIComponent(params.slug);
+
+  // console.log('Decoded Slug:', decodedSlug);
 
   return (
     <div>
-      <BlogDisplay slug={params.slug}/>
+      <BlogDisplay slug={decodedSlug}/>
       {/* <hr></hr> */}
       {/* <TopBlog/>
       <hr></hr> */}

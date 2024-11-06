@@ -10,6 +10,7 @@ import {  IBlogResponse } from "../interface/Blog.interface";
 import { Subscription } from "rxjs";
 import service from "../service";
 import formatDate from "../utils";
+import AppLording from "../GlobalComponent/AppLording";
 
 const AllBlog = ({limit}:{limit:number}) => {
 
@@ -24,7 +25,9 @@ const AllBlog = ({limit}:{limit:number}) => {
     });
 
     return () => subscription.unsubscribe();
-  },[skip,limit])
+  },[skip,limit]);
+
+  if (data.length === 0) return <AppLording />;
 
   return (
     <div>
@@ -55,8 +58,9 @@ const AllBlog = ({limit}:{limit:number}) => {
           <div className={styles.previewCardWrp}>
             <div className={styles.previewCardImg}>
               <img
-                src={`${item.createdAt}`}
-                alt="Autumn Leaves"
+                src={`${item.thumbnail}`}
+                alt="subject logo"
+                style={{backgroundPosition:"center",backgroundRepeat:"no-repeat",objectFit: "cover",}}
                 />
             </div>
             <div className={styles.previewCardContent}>

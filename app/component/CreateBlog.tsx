@@ -130,11 +130,11 @@ const CreateBlog = () => {
       <div className="form-outline mb-4">
         <textarea
           name="content.detailsContent"
-          style={{ width: "100%" }}
+          style={{ width: "100%",height:"200px"}}
           value={formData.content.detailsContent}
           onChange={handleChange}
           className="form-control"
-          placeholder="Details Content"
+          placeholder="Details Content(write minimum 500 words)"
         ></textarea>
       </div>
 
@@ -206,6 +206,11 @@ const CreateBlog = () => {
       </div>
 
       <div className="form-outline mb-4">
+        <p className="ms-3">
+          <a href="https://unsplash.com/" target="blank" style={{textDecoration:"none",color:"black"}}>
+            **Get Thumbnail from unsplash
+          </a>
+        </p>
         <input
           type="text"
           name="thumbnail"
@@ -213,7 +218,7 @@ const CreateBlog = () => {
           onChange={handleChange}
           style={{ width: "100%" }}
           className="form-control"
-          placeholder="Thumbnail URL"
+          placeholder="Thumbnail URL(size:415 x 277 px *maintain this ratio)"
         />
       </div>
 

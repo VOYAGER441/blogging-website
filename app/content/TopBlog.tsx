@@ -10,6 +10,7 @@ import { FaRegEye } from "react-icons/fa";
 import service from "../service";
 import {  IBlogResponse } from "../interface/Blog.interface";
 import { Subscription } from "rxjs";
+import AppLording from "../GlobalComponent/AppLording";
 
 const TopBlog = ({limit}:{limit:number}) => {
 
@@ -26,7 +27,8 @@ const TopBlog = ({limit}:{limit:number}) => {
     return () => subscription.unsubscribe();
   },[skip,limit])
 
-
+  if (cardData.length === 0) return <AppLording />;
+console.log(cardData);
 
   return (
     <div>
@@ -57,6 +59,7 @@ const TopBlog = ({limit}:{limit:number}) => {
 
           {cardData.map((card, key) => (
             <div key={key} className={`${styles.outerDiv}`}>
+
               <div className={`${styles.innerDiv}`}>
                 <Link
                   href={`/Blogs/${card.slug}`}

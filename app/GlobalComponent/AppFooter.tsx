@@ -20,7 +20,7 @@ const AppFooter = () => {
   // let date=new Date();
 
   return (
-    <div className={` ${styles.footerDiv}`}>
+    <div className={`mt-3 ${styles.footerDiv}`}>
       <footer className={`${styles.footerContent} text-black`}>
         <section className={`${styles.socialSection} d-flex justify-content-between p-4`}>
           <div className={styles.socialText}>

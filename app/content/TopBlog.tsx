@@ -16,19 +16,26 @@ const TopBlog = ({limit}:{limit:number}) => {
 
   const[cardData,setCardData]=useState<IBlogResponse[]>([]);
 
-  const skip=0;
-  // const limit = 8; 
-  useEffect(()=>{
-    const subscription: Subscription = service.getTop({ skip, limit }).subscribe({
-      next: (response: SetStateAction<IBlogResponse[]>) => setCardData(response),
+  // const [data, setData] = useState<IBlogResponse[]>([]);
+  const skip = 0;
+
+  useEffect(() => {
+    const subscription: Subscription = service.getAll({ skip, limit }).subscribe({
+      next: (response: SetStateAction<IBlogResponse[]>) => {
+        if (Array.isArray(response)) {
+          setCardData(response);
+        } else {
+          console.error('Unexpected response format:', response);
+          setCardData([]);
+        }
+      },
       error: (err: any) => console.error('Error fetching blogs:', err),
     });
 
     return () => subscription.unsubscribe();
-  },[skip,limit])
+  }, [skip, limit]);
 
-  if (cardData.length === 0) return <AppLording />;
-console.log(cardData);
+  if (!Array.isArray(cardData) || cardData.length === 0) return <AppLording />;
 
   return (
     <div>

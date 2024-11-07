@@ -8,6 +8,7 @@ import { IBlogResponse } from "../interface/Blog.interface";
 import { Subscription } from "rxjs";
 import formatDate from "../utils";
 import AppLording from "../GlobalComponent/AppLording";
+// import { GiKetchup } from "react-icons/gi";
 
 const BlogDisplay = ({ slug }: { slug: string }) => {
   const [cardData, setCardData] = useState<IBlogResponse | null>(null);
@@ -56,6 +57,43 @@ const BlogDisplay = ({ slug }: { slug: string }) => {
               <p className="card-text" style={{ columns: "300px" }}>
                 {cardData.content.detailsContent}
               </p>
+
+              <div className="mb-5 me-3">
+                <p className="card-text float-start">
+                  <small
+                    className="text-muted"
+                    style={{
+                      
+                     fontSize:"1rem",
+                      borderRadius: "5px",
+                      padding: "5px 10px",
+                    }}
+                  >
+                   <mark>Tags:</mark>{cardData.tags.map((tag,key)=>(
+                    <span key={key} className="badge rounded-pill bg-info text-dark" style={{marginLeft:"5px"}}>{tag}</span>
+                   ))}
+                  </small>
+                </p>
+              </div>
+
+              <div className="mb-5 me-3">
+                <p className="card-text float-start">
+                  <small
+                    className="text-muted"
+                    style={{
+                      
+                     fontSize:"1rem",
+                      borderRadius: "5px",
+                      padding: "5px 10px",
+                    }}
+                  >
+                   <mark>Links:</mark>{cardData.links.map((link,key)=>(
+                    <span key={key} className="badge rounded-pill bg-info text-dark" style={{marginLeft:"5px"}}><a href={`${link}`} target="blank" color="black">{link}</a></span>
+                   ))}
+                  </small>
+                </p>
+              </div>
+
               <div className="mb-5 me-3">
                 <p className="card-text float-end">
                   <small

@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import React from "react";
-import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import styles from "./AppNav.module.scss";
+import AppSearch from "./AppSearch";
 
 const AppNav = () => {
   return (
@@ -110,27 +109,8 @@ const AppNav = () => {
             </ul>
             {/* for search box */}
             <div className={`${styles.searchContainer}`}>
-              <form className="d-flex me-5 ">
-                <div className="input-group">
-                  <div className="form-floating" data-mdb-input-init>
-                    <input
-                      type="search"
-                      id="form1"
-                      className="form-control"
-                      placeholder="Search"
-                      style={{ backgroundColor: "#e0e1dd" }}
-                    />
-                    <label htmlFor="form1">Search</label>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-secondary bg-black"
-                    data-mdb-ripple-init
-                  >
-                    <FaSearch />
-                  </button>
-                </div>
-              </form>
+              
+            <AppSearch/>
             </div>
           </div>
         </div>

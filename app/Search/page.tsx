@@ -69,17 +69,18 @@
 // app/Search/page.tsx (Updated version for client-side)
 
 // app/Search/page.tsx (Updated version)
+// app/Search/page.tsx
+'use client';
 
-'use client'; // Indicate this is a client-side component
-
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation'; // Client-side hook
 import AppSearchResult from '../content/AppSearchResult';
 
 const Page = () => {
-  const searchParams = useSearchParams(); // Get query parameters
+  const searchParams = useSearchParams(); // Get query parameters from the URL
   const [searchValue, setSearchValue] = useState<string>('');
 
+  // Update searchValue whenever searchParams change
   useEffect(() => {
     const querySearchValue = searchParams.get('searchValue');
     if (querySearchValue) {
@@ -91,9 +92,9 @@ const Page = () => {
 
   return (
     <div>
-      {/* Wrap the component in Suspense */}
+      {/* Wrap the component inside Suspense */}
       <Suspense fallback={<div>Loading...</div>}>
-        <AppSearchResult searchValue={searchValue} /> {/* Pass the search value */}
+        <AppSearchResult searchValue={searchValue} />
       </Suspense>
     </div>
   );

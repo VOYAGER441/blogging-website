@@ -68,9 +68,11 @@
 // app/Search/page.tsx (Updated version)
 // app/Search/page.tsx (Updated version for client-side)
 
+// app/Search/page.tsx (Updated version)
+
 'use client'; // Indicate this is a client-side component
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'; // Client-side hook
 import AppSearchResult from '../content/AppSearchResult';
 
@@ -83,13 +85,16 @@ const Page = () => {
     if (querySearchValue) {
       setSearchValue(querySearchValue); // Set the searchValue from the query parameter
     }
-  }, [searchParams]); // Re-run if searchParams change
+  }, [searchParams]);
 
   console.log("Search value:", searchValue);
 
   return (
     <div>
-      <AppSearchResult searchValue={searchValue} /> {/* Pass the search value */}
+      {/* Wrap the component in Suspense */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <AppSearchResult searchValue={searchValue} /> {/* Pass the search value */}
+      </Suspense>
     </div>
   );
 };

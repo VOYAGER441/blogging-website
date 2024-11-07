@@ -70,9 +70,10 @@
 
 // app/Search/page.tsx (Updated version)
 // app/Search/page.tsx
+// app/Search/page.tsx
 'use client';
 
-import React, { useState, Suspense, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation'; // Client-side hook
 import AppSearchResult from '../content/AppSearchResult';
 
@@ -92,10 +93,7 @@ const Page = () => {
 
   return (
     <div>
-      {/* Wrap the component inside Suspense */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <AppSearchResult searchValue={searchValue} />
-      </Suspense>
+      <AppSearchResult searchValue={searchValue} />
     </div>
   );
 };

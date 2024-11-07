@@ -99,3 +99,20 @@ export const getDataBySlug = ({slug}:{slug:any}) => {
     })
   );
 };
+
+
+export const search = ({searchValue}:{searchValue:any}) => {
+  // const url = `https://bloging-backend-production.up.railway.app/blog/top?skip=${skip}&limit=${limit}`; // Adjust URL as needed
+
+   const url = `https://bloging-backend-q74o.onrender.com/blog/search/${searchValue}`;
+  // Convert the axios promise into an observable using `from`
+  return from(
+    axios.get(url )
+  ).pipe(
+    map((response: { data: any; }) => response.data), // Extract data from the response
+    catchError((error: any) => {
+      console.error('Create blog error:', error);
+      return of({ error: true, message: 'Failed to create blog' });
+    })
+  );
+};

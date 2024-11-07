@@ -14,6 +14,7 @@ const CreateBlog = () => {
       detailsContent: "",
     },
     tags: [""],
+    links: [""],
     author: "",
     isTop: false,
     popUpText: "",
@@ -54,6 +55,15 @@ const CreateBlog = () => {
     }));
   };
 
+  const handleLinkChange = (index: number, value: string) => {
+    const newLinks = [...formData.links];
+    newLinks[index] = value;
+    setFormData((prev) => ({
+      ...prev,
+      links: newLinks,
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -69,6 +79,7 @@ const CreateBlog = () => {
               detailsContent: "",
             },
             tags: [""],
+            links: [""],
             author: "",
             isTop: false,
             popUpText: "",
@@ -168,6 +179,38 @@ const CreateBlog = () => {
           </button>
         </div>
       </div>
+
+      <div className="form-outline mb-4">
+        {formData.links.map((links, index) => (
+          <input
+            key={index}
+            type="text"
+            value={links}
+            style={{ width: "100%" }}
+            onChange={(e) => handleLinkChange(index, e.target.value)}
+            className="form-control mb-2"
+            placeholder={`Add Use full links(Resource) `}
+          />
+        ))}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() =>
+              setFormData((prev) => ({ ...prev, links: [...prev.links, ""] }))
+            }
+          >
+            Add Use full links(Resource)
+          </button>
+        </div>
+      </div>
+
 
       <div className="form-outline mb-4">
         <input

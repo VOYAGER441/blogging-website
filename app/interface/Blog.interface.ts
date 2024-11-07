@@ -77,6 +77,7 @@ export  interface IBlogResponse {
   author:string;
   authorId: string;
   tags: string[];
+  links: string[];
   isPublished: boolean;
   isDeleted: boolean;
   isTop:boolean;
@@ -100,6 +101,7 @@ export  interface IBlogCreateRequest {
     detailsContent:string
   };
   tags: string[];
+  links: string[];
   author:string;
   isTop:boolean;
   popUpText:string;
@@ -114,6 +116,7 @@ export  interface IBlogUpdateRequest{
     detailsContent:string
   };
   tags: string[];
+  links: string[];
   slug:string;
   author:string;
   isTop:boolean;

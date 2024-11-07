@@ -73,19 +73,19 @@
 // app/Search/page.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation'; // Client-side hook
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import AppSearchResult from '../content/AppSearchResult';
 
 const Page = () => {
-  const searchParams = useSearchParams(); // Get query parameters from the URL
+  const searchParams = useSearchParams();
   const [searchValue, setSearchValue] = useState<string>('');
 
   // Update searchValue whenever searchParams change
   useEffect(() => {
     const querySearchValue = searchParams.get('searchValue');
     if (querySearchValue) {
-      setSearchValue(querySearchValue); // Set the searchValue from the query parameter
+      setSearchValue(querySearchValue);
     }
   }, [searchParams]);
 
@@ -93,7 +93,9 @@ const Page = () => {
 
   return (
     <div>
-      <AppSearchResult searchValue={searchValue} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <AppSearchResult searchValue={searchValue} />
+      </Suspense>
     </div>
   );
 };

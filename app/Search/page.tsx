@@ -71,31 +71,22 @@
 // app/Search/page.tsx (Updated version)
 // app/Search/page.tsx
 // app/Search/page.tsx
+// /Search/Page.tsx
 'use client';
 
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
-import { useSearchParams } from 'next/navigation';
 
-// Dynamically import the component and disable SSR
-const AppSearchResult = dynamic(() => import('../content/AppSearchResult'), {
+// Dynamically import SearchResultsClient and disable SSR
+const SearchResultsClient = dynamic(() => import('./SearchResultsClient'), {
   ssr: false,
 });
 
 const Page = () => {
-  const searchParams = useSearchParams();
-  const [searchValue, setSearchValue] = useState<string | undefined>(undefined);
-
-  // Fetch the search value from the URL query parameters
-  useEffect(() => {
-    const querySearchValue = searchParams.get('searchValue');
-    setSearchValue(querySearchValue || '');
-  }, [searchParams]);
-
   return (
     <div>
       <Suspense fallback={<div>Loading search results...</div>}>
-        <AppSearchResult searchValue={searchValue} />
+        <SearchResultsClient />
       </Suspense>
     </div>
   );
